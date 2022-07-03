@@ -12,7 +12,7 @@ Citizen.CreateThread(function()
     for k, v in pairs(Config.Stashes) do
 
         local dist = #(GetEntityCoords(ped)-vector3(Config.Stashes[k].coords.x, Config.Stashes[k].coords.y, Config.Stashes[k].coords.z))
-        if dist <= 3.0 then
+        if dist <= 2.0 then
         wait = 5
         inZone  = true
 
@@ -27,12 +27,12 @@ Citizen.CreateThread(function()
 
     if inZone and not alreadyEnteredZone then
         alreadyEnteredZone = true
-        TriggerEvent('cd_drawtextui:ShowUI', 'show', text)
+        exports['qb-core']:DrawText(text ,'left')
     end
 
     if not inZone and alreadyEnteredZone then
         alreadyEnteredZone = false
-        TriggerEvent('cd_drawtextui:HideUI')
+        exports['qb-core']:HideText()
     end
     Citizen.Wait(wait)
     end
@@ -74,6 +74,7 @@ RegisterNetEvent('qb-business:client:openStash', function(currentstash, stash)
     if canOpen then 
         TriggerServerEvent("inventory:server:OpenInventory", "stash", Config.Stashes[currentstash].stashName, {maxweight = Config.Stashes[currentstash].stashSize, slots = Config.Stashes[currentstash].stashSlots})
         TriggerEvent("inventory:client:SetCurrentStash", Config.Stashes[currentstash].stashName)
+        TriggerServerEvent("InteractSound_SV:PlayOnSource", "StashOpen", 0.5)
     else
         QBCore.Functions.Notify('You cannot open this', 'error')
     end
