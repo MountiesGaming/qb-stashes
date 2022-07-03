@@ -65,5 +65,5 @@ Added qb-target support
     },
 ```
 
-## Issues & Support
+## Issues & Support (Original Author)
 For any issues or support needed, join my discord [https://discord.gg/MTuZMxD7vj]
