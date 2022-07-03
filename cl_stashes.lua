@@ -1,40 +1,69 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
 
-Citizen.CreateThread(function()
-    local alreadyEnteredZone = false
-    local text = '<b>[E] Open Stash</b>'
-    while true do
-    wait = 5
-    local ped = PlayerPedId()
-    local inZone = false
+CreateThread(function()
+    if Config.UseTarget then
+        CreateThread(function()
 
-    for k, v in pairs(Config.Stashes) do
+            for k, v in pairs(Config.Stashes) do
+                exports['qb-target']:AddBoxZone(Config.Stashes[k].stashName, vector3(Config.Stashes[k].coords.x, Config.Stashes[k].coords.y, Config.Stashes[k].coords.z), 1, 1, {
+                    name = Config.Stashes[k].stashName,
+                    heading = 0,
+                    debugPoly = false,
+                    minZ = Config.Stashes[k].coords.z - 1,
+                    maxZ = Config.Stashes[k].coords.z + 1,
+                }, {
+                    options = {
+                        {
+                            type = "client",
+                            icon = "fas fa-box",
+                            label = "Open Stash",
+                            action = function(entity)
+                                if IsPedAPlayer(entity) then return false end
+                                TriggerEvent('qb-business:client:openStash', k, Config.Stashes[k].stashName)
+                            end,
+                        },
+                    },
+                    distance = 2.0
+                })
+            end
 
-        local dist = #(GetEntityCoords(ped)-vector3(Config.Stashes[k].coords.x, Config.Stashes[k].coords.y, Config.Stashes[k].coords.z))
-        if dist <= 2.0 then
+        end)
+    else
+        local alreadyEnteredZone = false
+        local text = '<b>[E] Open Stash</b>'
+        while true do
         wait = 5
-        inZone  = true
+        local ped = PlayerPedId()
+        local inZone = false
 
-        if IsControlJustReleased(0, 38) then
-            TriggerEvent('qb-business:client:openStash', k, Config.Stashes[k].stashName)
+        for k, v in pairs(Config.Stashes) do
+
+            local dist = #(GetEntityCoords(ped)-vector3(Config.Stashes[k].coords.x, Config.Stashes[k].coords.y, Config.Stashes[k].coords.z))
+            if dist <= 2.0 then
+            wait = 5
+            inZone  = true
+
+            if IsControlJustReleased(0, 38) then
+                TriggerEvent('qb-business:client:openStash', k, Config.Stashes[k].stashName)
+            end
+            break
+            else
+            wait = 2000
+            end
         end
-        break
-        else
-        wait = 2000
+
+        if inZone and not alreadyEnteredZone then
+            alreadyEnteredZone = true
+            exports['qb-core']:DrawText(text ,'left')
         end
-    end
 
-    if inZone and not alreadyEnteredZone then
-        alreadyEnteredZone = true
-        exports['qb-core']:DrawText(text ,'left')
-    end
-
-    if not inZone and alreadyEnteredZone then
-        alreadyEnteredZone = false
-        exports['qb-core']:HideText()
-    end
-    Citizen.Wait(wait)
+        if not inZone and alreadyEnteredZone then
+            alreadyEnteredZone = false
+            exports['qb-core']:HideText()
+        end
+        Citizen.Wait(wait)
+        end
     end
 end)
 
