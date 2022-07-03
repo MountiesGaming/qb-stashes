@@ -2,7 +2,7 @@
 
 Configurable Stashes for QBCore with options of locking to job, gang or CitizenID. Can be used for donator MLOs or businesses that requires stashes
 
-Upated to use QBCore Drawtext to remove a dependency
+Upated to use QBCore Drawtext to remove a dependency and a sound for opening the stash
 
 ## Example Config
 
