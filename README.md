@@ -13,6 +13,7 @@ Added qb-target support
 ```lua
     ["donatorMansion1"] = {
         stashName = "donatorMansion1",
+        canAnyoneOpen = false,
         coords = vector3(-96.17, 817.29, 235.72),
         requirecid = true,
         jobrequired = false,
@@ -25,6 +26,7 @@ Added qb-target support
     },
     ["liquorBusiness"] = {
         stashName = "liquorBusiness",
+        canAnyoneOpen = false,
         coords = vector3(0.05, -1818.36, 29.54),
         requirecid = false,
         jobrequired = true,
@@ -37,6 +39,7 @@ Added qb-target support
     },
     ["ballasExtraStash"] = {
         stashName = "ballasExtraStash",
+        canAnyoneOpen = false,
         coords = vector3(-1730.5, 358.6, 88.73), 
         requirecid = true,
         jobrequired = false,
