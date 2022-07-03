@@ -43,6 +43,19 @@ Upated to use QBCore Drawtext to remove a dependency and a sound for opening the
         stashSize = 1250000,
         stashSlots = 125, 
     },
+    ["publicstash"] = {
+        stashName = "publicstash",
+        canAnyoneOpen = true,
+        coords = vector3(-1730.5, 358.6, 88.73), 
+        requirecid = false,
+        jobrequired = false,
+        gangrequired = false,
+        gang = "",
+        job = "",
+        cid = {},  
+        stashSize = 1250000,
+        stashSlots = 125, 
+    },
 ```
 
 ## Issues & Support
