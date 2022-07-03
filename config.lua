@@ -5,16 +5,16 @@ Config.UseTarget = GetConvar('UseTarget', 'false') == 'true'
 Config.PoliceOpen = true -- Can Police open all stashes
 
 Config.Stashes = {
-    -- ["geminimansion"] = {
+    -- ["stash1"] = {
     --     canAnyoneOpen = false,
-    --     stashName = "geminimansion",
+    --     stashName = "stash1",
     --     coords = vector3(-1730.5, 358.6, 88.73), 
-    --     requirecid = true,
+    --     requirecid = false,
     --     jobrequired = false,
     --     gangrequired = false,
     --     gang = "",
     --     job = "",
-    --     cid = {"MAH44286"},  
+    --     cid = {""},  
     --     stashSize = 1250000,
     --     stashSlots = 125, 
     -- },
