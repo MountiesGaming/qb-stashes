@@ -6,6 +6,8 @@ Upated to use QBCore Drawtext to remove a dependency and a sound for opening the
 
 Also added the ability to create public stashes, that are accessable by anyone
 
+Added qb-target support
+
 ## Example Config
 
 ```lua
