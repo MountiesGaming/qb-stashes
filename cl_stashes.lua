@@ -44,6 +44,7 @@ RegisterNetEvent('qb-business:client:openStash', function(currentstash, stash)
     local PlayerJob = PlayerData.job.name
     local PlayerGang = PlayerData.gang.name
     local canOpen = false
+    local canAnyoneOpen = false
 
     if Config.PoliceOpen then 
         if PlayerJob == "police" then
@@ -71,7 +72,15 @@ RegisterNetEvent('qb-business:client:openStash', function(currentstash, stash)
         end
     end
 
-    if canOpen then 
+    if Config.Stashes[currentstash].canAnyoneOpen then
+        canAnyoneOpen = true
+    end
+
+    if canAnyoneOpen then
+        TriggerServerEvent("inventory:server:OpenInventory", "stash", Config.Stashes[currentstash].stashName, {maxweight = Config.Stashes[currentstash].stashSize, slots = Config.Stashes[currentstash].stashSlots})
+        TriggerEvent("inventory:client:SetCurrentStash", Config.Stashes[currentstash].stashName)
+        TriggerServerEvent("InteractSound_SV:PlayOnSource", "StashOpen", 0.5)
+    elseif canOpen then
         TriggerServerEvent("inventory:server:OpenInventory", "stash", Config.Stashes[currentstash].stashName, {maxweight = Config.Stashes[currentstash].stashSize, slots = Config.Stashes[currentstash].stashSlots})
         TriggerEvent("inventory:client:SetCurrentStash", Config.Stashes[currentstash].stashName)
         TriggerServerEvent("InteractSound_SV:PlayOnSource", "StashOpen", 0.5)
