@@ -4,6 +4,8 @@ Configurable Stashes for QBCore with options of locking to job, gang or CitizenI
 
 Upated to use QBCore Drawtext to remove a dependency and a sound for opening the stash
 
+Also added the ability to create public stashes, that are accessable by anyone
+
 ## Example Config
 
 ```lua
