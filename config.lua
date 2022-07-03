@@ -4,6 +4,7 @@ Config.PoliceOpen = true -- Can Police open all stashes
 
 Config.Stashes = {
     -- ["geminimansion"] = {
+    --     canAnyoneOpen = false,
     --     stashName = "geminimansion",
     --     coords = vector3(-1730.5, 358.6, 88.73), 
     --     requirecid = true,
