@@ -1,5 +1,7 @@
 Config = {}
 
+Config.UseTarget = GetConvar('UseTarget', 'false') == 'true'
+
 Config.PoliceOpen = true -- Can Police open all stashes
 
 Config.Stashes = {
