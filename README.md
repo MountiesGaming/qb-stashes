@@ -69,5 +69,4 @@ qb-target option
     },
 ```
 
-## Issues & Support (Original Author)
-For any issues or support needed, join my discord [https://discord.gg/MTuZMxD7vj]
+Issues? Make an issue on the repo.
