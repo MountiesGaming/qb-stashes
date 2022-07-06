@@ -5,7 +5,7 @@ CreateThread(function()
     if Config.UseTarget then
         CreateThread(function()
 
-            for k, v in pairs(Config.Stashes) do
+            for k, _ in pairs(Config.Stashes) do
                 exports['qb-target']:AddBoxZone(Config.Stashes[k].stashName, vector3(Config.Stashes[k].coords.x, Config.Stashes[k].coords.y, Config.Stashes[k].coords.z), 1, 1, {
                     name = Config.Stashes[k].stashName,
                     heading = 0,
@@ -67,13 +67,12 @@ CreateThread(function()
     end
 end)
 
-RegisterNetEvent('qb-business:client:openStash', function(currentstash, stash)
+RegisterNetEvent('qb-business:client:openStash', function(currentstash, _)
 
     local PlayerData = QBCore.Functions.GetPlayerData()
     local PlayerJob = PlayerData.job.name
     local PlayerGang = PlayerData.gang.name
     local canOpen = false
-    local canAnyoneOpen = false
 
     if Config.PoliceOpen then 
         if PlayerJob == "police" then
@@ -102,10 +101,6 @@ RegisterNetEvent('qb-business:client:openStash', function(currentstash, stash)
     end
 
     if Config.Stashes[currentstash].canAnyoneOpen then
-        canAnyoneOpen = true
-    end
-
-    if canAnyoneOpen then
         TriggerServerEvent("inventory:server:OpenInventory", "stash", Config.Stashes[currentstash].stashName, {maxweight = Config.Stashes[currentstash].stashSize, slots = Config.Stashes[currentstash].stashSlots})
         TriggerEvent("inventory:client:SetCurrentStash", Config.Stashes[currentstash].stashName)
         TriggerServerEvent("InteractSound_SV:PlayOnSource", "StashOpen", 0.5)
